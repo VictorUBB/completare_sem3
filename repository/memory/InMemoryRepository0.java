@@ -1,6 +1,7 @@
 package socialnetwork.repository.memory;
 
 import socialnetwork.domain.Entity;
+import socialnetwork.domain.Utilizator;
 import socialnetwork.domain.validators.Validator;
 import socialnetwork.repository.Repository0;
 
@@ -72,5 +73,8 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
         return entity;
 
     }
+
+
+
 
 }
