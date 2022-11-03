@@ -2,6 +2,7 @@ package socialnetwork.repository.memory;
 
 import socialnetwork.domain.Entity;
 import socialnetwork.domain.Utilizator;
+import socialnetwork.domain.validators.ValidationException;
 import socialnetwork.domain.validators.Validator;
 import socialnetwork.repository.Repository0;
 
@@ -24,8 +25,12 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
     @Override
     public E findOne(ID id){
         if (id==null)
-            throw new IllegalArgumentException("id must be not null");
-        return entities.get(id);
+            throw new IllegalArgumentException("\u001B[31m"+"id must be not null"+"\u001B[0m");
+        if(entities.get(id)==null){
+            throw new IllegalArgumentException("\u001B[31m"+"ID inexistent"+"\u001B[0m");
+        }
+        else
+             return entities.get(id);
     }
 
 
@@ -34,19 +39,29 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
         return entities.values();
     }
 
+    public  Map<ID,E> getALl(){
+        return entities;
+    }
     @Override
     public E save(E entity) {
         if (entity==null)
-            throw new IllegalArgumentException("entity must be not null");
-        validator.validate(entity);
-        if(entities.get(entity.getId()) != null) {
-            return entity;
+            throw new IllegalArgumentException("\u001B[31m"+"entity must be not null"+"\u001B[0m");
+        try {
+            validator.validate(entity);
+            if(entities.get(entity.getId()) != null) {
+                return entity;
+            }
+            else {
+                entities.put(entity.getId(),entity);
+                // entities.put(id,entity);
+                // id++;
+            }
         }
-        else {
-           entities.put(entity.getId(),entity);
-           // entities.put(id,entity);
-           // id++;
+        catch (ValidationException ve){
+            System.out.println("\u001B[31m"+ve.toString()+"\u001B[0m");
         }
+
+
         return null;
     }
 
@@ -61,7 +76,7 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
     public E update(E entity) {
 
         if(entity == null)
-            throw new IllegalArgumentException("entity must be not null!");
+            throw new IllegalArgumentException("\u001B[31m"+"entity must be not null!"+"\u001B[0m");
         validator.validate(entity);
 
         entities.put(entity.getId(),entity);

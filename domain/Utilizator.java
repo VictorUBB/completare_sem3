@@ -39,12 +39,15 @@ public class Utilizator extends Entity<Long>{
         this.friends.add(friend);
     }
 
+    public void deleteFriend(Utilizator friend){
+        this.friends.remove(friend);
+    }
     @Override
     public String toString() {
        return "Utilizator{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                /*", friends=" + friends + '\'' +*/
+                ", friends=" + friends.size() + '\'' +
                 ",id:"+getId().toString()+
                 '}';
     }
