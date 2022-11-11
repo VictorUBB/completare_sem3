@@ -1,4 +1,4 @@
-package socialnetwork.domain;
+package socialnetwork.entities;
 
 import java.io.Serial;
 import java.io.Serializable;

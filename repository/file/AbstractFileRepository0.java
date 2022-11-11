@@ -1,6 +1,6 @@
 package socialnetwork.repository.file;
 
-import socialnetwork.domain.Entity;
+import socialnetwork.entities.Entity;
 import socialnetwork.domain.validators.Validator;
 import socialnetwork.repository.memory.InMemoryRepository0;
 
@@ -80,6 +80,23 @@ public abstract class AbstractFileRepository0<ID, E extends Entity<ID>> extends 
 
     }
 
+    @Override
+    public E delete(ID id)  {
+        E entity= super.delete(id);
+       // loadData();
+       try {
+           PrintWriter writer = new PrintWriter(fileName);
+           writer.print("");
+           writer.close();
+       }
+       catch (IOException e){
+           e.printStackTrace();
+       }
 
+        for(E entity1: getALl().values()){
+            writeToFile(entity1);
+        }
+        return entity;
+    }
 }
 

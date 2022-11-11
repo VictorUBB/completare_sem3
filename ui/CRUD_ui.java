@@ -2,9 +2,8 @@ package socialnetwork.ui;
 import java.io.*;
 
 
-import socialnetwork.domain.Utilizator;
-import socialnetwork.domain.validators.ValidationException;
-import socialnetwork.graf.Graf;
+import socialnetwork.entities.Friendship;
+import socialnetwork.entities.Utilizator;
 import socialnetwork.service.UserService;
 
 import java.io.IOException;
@@ -67,9 +66,10 @@ public class CRUD_ui {
            String option=s2.nextLine();
            Long id=Long.valueOf(option);
            List<Utilizator> users=service.getFriends(id);
+/*           Map<Long, Friendship> friendshipMap= service.g
            for(Utilizator user:users){
                System.out.println(user.toString());
-           }
+           }*/
        }
        catch (RuntimeException ve){
            System.out.println("\u001B[31m"+"Invalid input"+"\u001B[0m");
@@ -85,10 +85,10 @@ public class CRUD_ui {
            Scanner s2= new Scanner(System.in);
            String option=s2.nextLine();
            Long id=Long.valueOf(option);
-           List<Utilizator> users=service.getFriends(id);
+/*           List<Utilizator> users=service.getFriends(id);
            for(Utilizator user:users){
                System.out.println(user.toString());
-           }
+           }*/
            System.out.println("Introduceti id-ul prietenului ce doriti sa il stergeti:");
            String option1=s2.nextLine();
            Long id_friend=Long.valueOf(option1);
@@ -102,10 +102,10 @@ public class CRUD_ui {
     }
     public void graph_ui(){
         int [] lst =service.graf();
-        System.out.println("Numarul de componente conexe este: "+lst[0] );
+        //System.out.println("Numarul de componente conexe este: "+lst[0] );
         System.out.println("Cea mai marem comunitatea este:");
-        service.biggestComunity();
-
+    //    service.biggestComunity();
+        service.graf_friend();
 
     }
     public void run() throws IOException {

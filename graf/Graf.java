@@ -1,9 +1,8 @@
 package socialnetwork.graf;
 
-import socialnetwork.domain.Utilizator;
+import socialnetwork.entities.Utilizator;
 
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 public class Graf {
@@ -67,7 +66,7 @@ public class Graf {
         boolean[] visit=new boolean[ V];
         visit[v]=true;
         int remember=0;
-        while(lst.size()>1){
+        while(lst.size()>0){
             for(int x:lst)
                 if (!visit[x]){
                     System.out.println(users.get(Long.valueOf(x)).toString());

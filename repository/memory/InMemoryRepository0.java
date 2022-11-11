@@ -1,11 +1,11 @@
 package socialnetwork.repository.memory;
 
-import socialnetwork.domain.Entity;
-import socialnetwork.domain.Utilizator;
+import socialnetwork.entities.Entity;
 import socialnetwork.domain.validators.ValidationException;
 import socialnetwork.domain.validators.Validator;
 import socialnetwork.repository.Repository0;
 
+import java.io.FileNotFoundException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -66,7 +66,7 @@ public class InMemoryRepository0<ID, E extends Entity<ID>> implements Repository
     }
 
     @Override
-    public E delete(ID id) {
+    public E delete(ID id)  {
         E entity=findOne(id);
         entities.remove(id);
         return entity;

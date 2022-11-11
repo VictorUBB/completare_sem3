@@ -1,6 +1,6 @@
 package socialnetwork.domain.validators;
 
-import socialnetwork.domain.Utilizator;
+import socialnetwork.entities.Utilizator;
 
 import java.util.Objects;
 

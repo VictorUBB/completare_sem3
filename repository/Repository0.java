@@ -1,7 +1,9 @@
 package socialnetwork.repository;
 
-import socialnetwork.domain.Entity;
+import socialnetwork.entities.Entity;
 import socialnetwork.domain.validators.ValidationException;
+
+import java.io.FileNotFoundException;
 
 /**
  * CRUD operations repository interface
@@ -50,7 +52,7 @@ public interface Repository0<ID, E extends Entity<ID>> {
      * @throws IllegalArgumentException
      *                   if the given id is null.
      */
-    E delete(ID id);
+    E delete(ID id) throws FileNotFoundException;
 
     /**
      *

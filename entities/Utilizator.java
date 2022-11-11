@@ -1,10 +1,10 @@
-package socialnetwork.domain;
+package socialnetwork.entities;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
-public class Utilizator extends Entity<Long>{
+public class Utilizator extends Entity<Long> {
     private String firstName;
     private String lastName;
     private List<Utilizator> friends;
@@ -47,7 +47,7 @@ public class Utilizator extends Entity<Long>{
        return "Utilizator{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
-                ", friends=" + friends.size() + '\'' +
+              //  ", friends=" + friends.size() + '\'' +
                 ",id:"+getId().toString()+
                 '}';
     }
