@@ -1,6 +1,5 @@
-0;ion;Popescu
-1;dan;Marian
+0;Ion;Popescu
 2;ana;Maria
 3;Stoica;Victor
 4;Tudor;Popa
-5;Oana;Lazar
+6;Dorian;Popa

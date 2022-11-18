@@ -26,7 +26,15 @@ public class UserService<ID, E extends Entity<ID>> {
        // this.repository = new InMemoryRepository0<Long,Utilizator>(new UtilizatorValidator());
         this.repository=new UtilizatorFile0("C:\\Users\\Victor\\Desktop\\faculta\\MAP\\completare_sem3\\repository\\file\\users.txt",new UtilizatorValidator());
         this.repoFriend=new FriendshipFile("C:\\Users\\Victor\\Desktop\\faculta\\MAP\\completare_sem3\\repository\\file\\friens.txt");
-        int lung=repository.getALl().size();
+        Map<Long,Utilizator> users= repository.getALl();
+        int max=-1;
+        for(Long id: users.keySet()){
+            if(id.intValue()>max){
+                max=id.intValue();
+            }
+        }
+        max++;
+        int lung=max;
         this.id= Long.valueOf(lung);
         lung=repoFriend.getALl().size();
         this.id_friendship=Long.valueOf(lung);
@@ -69,12 +77,23 @@ public class UserService<ID, E extends Entity<ID>> {
     }
 
     public Utilizator remove(Long id){
+
       Utilizator user= repository.delete(id);
       for(Utilizator users: repository.findAll()){
           List<Utilizator> entities=users.getFriends();
           entities.remove(user);
           }
-
+        Map<Long,Friendship> friens=repoFriend.getALl();
+        for(Friendship friendship:friens.values()){
+            if (friendship.getId_1()==id){
+                repoFriend.delete(friendship.getId());
+                break;
+            }
+            if (friendship.getId_2()==id){
+                repoFriend.delete(friendship.getId());
+                break;
+            }
+        }
       return user;
     }
 
@@ -131,7 +150,8 @@ public class UserService<ID, E extends Entity<ID>> {
 
     public  void graf_friend(){
         Map<Long,Utilizator> users=repository.getALl();
-        Graf graf=new Graf(users.size());
+
+        Graf graf=new Graf(id.intValue());
         Map<Long,Friendship> friendshipMap=repoFriend.getALl();
         for(Friendship friendship:friendshipMap.values()){
             graf.addEdge(friendship.getId_1().intValue(),friendship.getId_2().intValue());
